@@ -4,5 +4,7 @@ python:
 install:
 - pip install pytest
 - pip install argparse
+before_install:
+  - chmod +x setup.py
 script:
 - ./setup.py test
