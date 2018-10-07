@@ -1,12 +1,12 @@
 language: python
 python:
-- 2.7
+- 3.6
 install:
 - pip install pytest
 - pip install argparse
 - pip install setuptools
 - pip install enum
 before_install:
-  - chmod +x setup.py
+- chmod +x setup.py
 script:
 - ./setup.py test

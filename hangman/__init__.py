@@ -26,34 +26,34 @@ class HangmanGame(object):
             dict_f = open(dict_path, "r")
             self.dictionary = [word.strip() for word in dict_f.readlines()]
         except IOError:
-            print "Incorrect path to dictionary file!"
+            print("Incorrect path to dictionary file!")
 
     @staticmethod
     def get_next_letter():
-        print "Guess a letter:"
+        print("Guess a letter:")
         next_letter = raw_input()
         while not len(next_letter) == 1:
-            print "Type only 1 symbol!"
+            print("Type only 1 symbol!")
             next_letter = input().strip()
         return next_letter
 
     def do_step(self, next_letter):
         if "*" not in self.current_answer:
-            print "You won!"
+            print("You won!")
             return True
         if next_letter in self.used_letters:
-            print "This letter has already been used"
+            print("This letter has already been used")
         else:
             if next_letter in self.current_word:
-                print "Hit!"
+                print("Hit!")
                 for i in range(len(self.current_word)):
                     if self.current_word[i] == next_letter:
                         self.current_answer[i] = next_letter
-                print "The word:", self.current_answer
+                print("The word:", self.current_answer)
             else:
                 self.mistakes_counter += 1
-                print "Missed, mistake {} out of {}." \
-                    .format(self.mistakes_counter, self.max_mistakes)
+                print("Missed, mistake {} out of {}." \
+                    .format(self.mistakes_counter, self.max_mistakes))
         return False
 
     def start_game(self):
@@ -65,7 +65,7 @@ class HangmanGame(object):
             won = self.do_step(self.get_next_letter())
 
         if not won:
-            print "You lost!"
+            print("You lost!")
 
 
 if __name__ == "__main__":
