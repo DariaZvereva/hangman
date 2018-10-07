@@ -5,7 +5,10 @@ install:
 - pip install pytest
 - pip install argparse
 - pip install setuptools
+- pip install codecov
 before_install:
 - chmod +x setup.py
 script:
 - ./setup.py test
+after_success:
+- codecov
