@@ -31,7 +31,7 @@ class HangmanGame():
     @staticmethod
     def get_next_letter():
         print("Guess a letter:")
-        next_letter = raw_input()
+        next_letter = input()
         while not len(next_letter) == 1:
             print("Type only 1 symbol!")
             next_letter = input().strip()
