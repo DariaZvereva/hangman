@@ -5,6 +5,8 @@ install:
 - pip install pytest
 - pip install argparse
 - pip install setuptools
+- pip install enum
+- pip install code-cov
 before_install:
   - chmod +x setup.py
 script:
