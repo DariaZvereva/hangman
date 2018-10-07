@@ -2,7 +2,7 @@ import random
 import argparse
 
 
-class HangmanGame(object):
+class HangmanGame():
     dictionary = None
     current_word = None
     current_answer = None
@@ -52,8 +52,8 @@ class HangmanGame(object):
                 print("The word:", self.current_answer)
             else:
                 self.mistakes_counter += 1
-                print("Missed, mistake {} out of {}." \
-                    .format(self.mistakes_counter, self.max_mistakes))
+                print("Missed, mistake {} out of {}."
+                      .format(self.mistakes_counter, self.max_mistakes))
         return False
 
     def start_game(self):
