@@ -69,16 +69,16 @@ class HangmanGame(object):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--mistakes",
+    PARSER = argparse.ArgumentParser()
+    PARSER.add_argument("--mistakes",
                         help="maximum number of mistakes",
                         default=5, required=False)
-    parser.add_argument("--dictionary", help="path to dictionary",
+    PARSER.add_argument("--dictionary", help="path to dictionary",
                         required=False)
-    args = parser.parse_args()
-    dictionary_path = None
-    if args.dictionary:
-        dictionary_path = args.dictionary
-    new_game = HangmanGame(max_mistakes=args.mistakes,
-                           dict_path=dictionary_path)
-    new_game.start_game()
+    ARGS = PARSER.parse_args()
+    DISTIONARY_PATH = None
+    if ARGS.dictionary:
+        DISTIONARY_PATH = ARGS.dictionary
+    NEW_GAME = HangmanGame(max_mistakes=ARGS.mistakes,
+                           dict_path=DISTIONARY_PATH)
+    NEW_GAME.start_game()

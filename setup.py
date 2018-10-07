@@ -17,6 +17,7 @@ setup(
         "pytest-pylint",
         "pytest-pycodestyle",
         "pytest-pep257",
+        "pytest-cov",
     ],
     tests_require=[
         "pytest",
