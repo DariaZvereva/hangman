@@ -1,4 +1,4 @@
-from hangman import HangmanGame
+from hangman.hangman import HangmanGame
 
 
 def test_make_dictionary_from_file():
