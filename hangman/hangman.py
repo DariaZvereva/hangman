@@ -2,8 +2,18 @@ import random
 import argparse
 
 
-class HangmanGame():
+def make_dictionary_from_file(dict_path):
     dictionary = None
+    try:
+        with open(dict_path, "r") as dict_f:
+            dictionary = [word.strip() for word in dict_f.readlines()]
+    except IOError:
+        print("Incorrect path to dictionary file!")
+
+    return dictionary if dictionary is not None else []
+
+
+class HangmanGame:
     current_word = None
     current_answer = None
     max_mistakes = 5
@@ -11,33 +21,32 @@ class HangmanGame():
     used_letters = set()
     win = False
 
-    def __init__(self,
-                 dict_path=None,
-                 max_mistakes=None):
+    def __init__(self, word, max_mistakes=None):
+        """
+        :type word: str
+        :type max_mistakes: int | None
+        """
+        self.current_word = word
         if max_mistakes:
             self.max_mistakes = max_mistakes
-        if dict_path:
-            self.make_dictionary_from_file(dict_path)
-        else:
-            self.dictionary = ["forest", "mother", "abracadabra"]
-
-    def make_dictionary_from_file(self, dict_path):
-        try:
-            dict_f = open(dict_path, "r")
-            self.dictionary = [word.strip() for word in dict_f.readlines()]
-        except IOError:
-            print("Incorrect path to dictionary file!")
 
     @staticmethod
     def get_next_letter():
+        """
+        :rtype: char
+        """
         print("Guess a letter:")
-        next_letter = input()
+        next_letter = input().strip()
         while not len(next_letter) == 1:
             print("Type only 1 symbol!")
             next_letter = input().strip()
         return next_letter
 
     def do_step(self, next_letter):
+        """
+        :type next_letter: char
+        :rtype: bool
+        """
         if "*" not in self.current_answer:
             print("You won!")
             return True
@@ -57,10 +66,10 @@ class HangmanGame():
         return False
 
     def start_game(self):
-        self.current_word = random.choice(self.dictionary)
         self.current_answer = ["*" for _ in range(len(self.current_word))]
         self.mistakes_counter = 0
         won = False
+
         while self.mistakes_counter < self.max_mistakes and not won:
             won = self.do_step(self.get_next_letter())
 
@@ -79,8 +88,10 @@ def main():
     dictionary_path = None
     if args.dictionary:
         dictionary_path = args.dictionary
-    new_game = HangmanGame(max_mistakes=args.mistakes,
-                           dict_path=dictionary_path)
+    dictionary = make_dictionary_from_file(dictionary_path)
+    assert dictionary, "Dictionary must not be empty!"
+    word = random.choice(dictionary)
+    new_game = HangmanGame(max_mistakes=args.mistakes, word=word)
     new_game.start_game()
 
 

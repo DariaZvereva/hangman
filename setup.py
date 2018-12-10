@@ -12,7 +12,7 @@ setup(
     url="https://github.com/DariaZvereva/hangman",
     license="MIT",
     packages=[
-        "hangman",
+        "hangman", "tests"
     ],
     install_requires=[
     ],
